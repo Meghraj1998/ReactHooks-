@@ -3,16 +3,33 @@ import logo from './logo.svg';
 import './App.css';
 import ClassBase from './classBaseComp';
 import FunctionComp from './functionBaseCom';
+import { useState , useContext} from 'react';
+
+function App(props) {
+
+   const [name , setName]=useState("meghraj");
+  console.log(props);
+
+  function propsChange(tempname)
+  {
+    console.log('propsChange->>',tempname );
+
+    
+    setName(tempname);
+
+
  
 
-function App() {
+  }
+
   return (
     <div className="App"  >
      
+        
   
-       <ClassBase></ClassBase>
+       <ClassBase propsChange={{propsChange:propsChange,name:"name"}}></ClassBase>
    
-    <FunctionComp></FunctionComp>
+    <FunctionComp name={"name"}></FunctionComp>
    
     </div>
   );
