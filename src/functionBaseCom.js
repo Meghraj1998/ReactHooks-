@@ -13,6 +13,7 @@ function FunctionCom(props) {
 
   const [name, setName]=useState('Meghraj');
   const [lastName, setLastName]=useState('Meghraj');
+  const [width, setWidth]=useState(window.innerWidth);
 
   const theme=useContext(ThemeContext);
 
@@ -25,6 +26,24 @@ function FunctionCom(props) {
     document.title=name+lastName;
       
   });
+
+  useEffect(()=>  {
+
+    console.log('into useEffect 2');
+     window.addEventListener('resize', handleWidth);
+     return ()=>
+     {
+
+        console.log("cleanup the event ");
+        window.removeEventListener('resize', handleWidth);
+     }
+      
+  });
+  function handleWidth(){
+
+    setWidth(window.innerWidth);
+
+  }
 
 
   
@@ -67,7 +86,7 @@ function FunctionCom(props) {
       
         </div>
         <div>
-      Width<input value={window.innerWidth}></input>
+      Width<input value={width}></input>
         </div>
         
         
